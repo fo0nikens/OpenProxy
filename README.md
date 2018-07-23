@@ -32,6 +32,16 @@
 
 ***
 
+### Introduction
+
+The main goal of this project is to create a high-performance proxy server for http and https traffic.
+
+### Varnish Cache
+
+<img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
+
+Varnish Cache is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture.
+
 ### Resources
 
 ###### Varnish Cache
