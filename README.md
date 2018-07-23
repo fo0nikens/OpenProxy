@@ -40,7 +40,17 @@ The main goal of this project is to create a high-performance proxy server for h
 
 <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
 
-Varnish Cache is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture.
+  > Before using the **Varnish Cache** please read **[Introduction](https://varnish-cache.org/intro/)**.
+
+**Varnish Cache** is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture.
+
+### Nginx
+
+<img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
+
+  > Before using the **Nginx** please read **[Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)**.
+
+**Nginx** is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. The software was created by Igor Sysoev and first publicly released in 2004.
 
 ### Resources
 
