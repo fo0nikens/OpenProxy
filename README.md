@@ -1,4 +1,4 @@
-<h5 align="center">Varnish + Nginx HTTP/HTTPS Proxy Stack.</h5>
+<h4 align="center">:small_orange_diamond: Varnish + Nginx HTTP/HTTPS Proxy Stack :small_orange_diamond:</h4>
 
 <br>
 
