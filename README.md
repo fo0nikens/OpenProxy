@@ -2,6 +2,11 @@
 
 <h2 align="center">BIG-Proxy</h2>
 
+<p align="center">
+    <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/BIG-Proxy_preview.png"
+        alt="Master">
+</p>
+
 <br>
 
 <p align="center">
