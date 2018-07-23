@@ -66,8 +66,8 @@
 ###### Cheatsheets
 
 <p>
-&nbsp;&nbsp;:small_orange_diamond: <a href="https://regexr.com/"><b>Online tool to learn, build, & test Regular Expressions.</b></a><br>
-&nbsp;&nbsp;:small_orange_diamond: <a href="https://www.regextester.com/"><b>Online Regex Tester & Debugger.</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://regexr.com/"><b>Online tool to learn, build, & test Regular Expressions</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://www.regextester.com/"><b>Online Regex Tester & Debugger</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://kly.no/varnish/regex.txt"><b>Varnish Regexp</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://docs.fastly.com/guides/vcl/vcl-regular-expression-cheat-sheet.html"><b>VCL regular expression cheat sheet</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://www.hostingadvice.com/how-to/varnish-regex/"><b>5 Basic Tips to Using Regular Expressions in Varnish</b></a><br>
