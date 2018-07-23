@@ -1,7 +1,5 @@
 <h5 align="center">Varnish + Nginx HTTP/HTTPS Proxy Stack.</h5>
 
-<h2 align="center">BIG-Proxy</h2>
-
 <p align="center">
     <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/BIG-Proxy_preview.png"
         alt="Master">
@@ -31,6 +29,18 @@
 <br>
 
 ***
+
+### :black_small_square: Resources
+
+###### Varnish Cache
+
+<p>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://varnish-cache.org/"><b>Varnish HTTP Cache Project</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/varnishcache/varnish-cache"><b>Varnish Cache source code repository</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/brandonwamboldt/varnish-dashboard"><b>Varnish Dashboard</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/mattiasgeniar/varnish-4.0-configuration-templates"><b>Varnish 4.0 Template</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/mattiasgeniar/varnish-5.0-configuration-templates"><b>Varnish 5.0 Template</b></a><br>
+</p>
 
 ### Contributing
 
