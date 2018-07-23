@@ -46,7 +46,7 @@ The main goal of this project is to create a high-performance proxy server for h
 
 ### Nginx
 
-<img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
+<img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/nginx_logo.png" align="right">
 
   > Before using the **Nginx** please read **[Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)**.
 
