@@ -48,7 +48,7 @@ To increase your knowledge, read **[Varnish Documentation](https://varnish-cache
 
 ###### Varnish Cache with BIG-Proxy
 
-The next step should be to read the **[Varnish Cache](https://github.com/trimstray/BIG-Proxy/blob/master/doc/varnish-cache.md)** BIG-Proxy documentation.
+The next step should be to read the **[Varnish Cache BIG-Proxy documentation](https://github.com/trimstray/BIG-Proxy/blob/master/doc/varnish-cache.md)**.
 
 ### Nginx
 
@@ -62,7 +62,7 @@ To increase your knowledge, read **[Nginx Documentation](https://nginx.org/en/do
 
 ###### Nginx with BIG-Proxy
 
-The next step should be to read the **[Nginx](https://github.com/trimstray/BIG-Proxy/blob/master/doc/nginx.md)** BIG-Proxy documentation.
+The next step should be to read the **[Nginx BIG-Proxy documentation](https://github.com/trimstray/BIG-Proxy/blob/master/doc/nginx.md)**.
 
 ### External resources
 
