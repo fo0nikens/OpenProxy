@@ -46,6 +46,10 @@ The main goal of **BIG-Proxy** project is to create a high-performance open sour
 
 To increase your knowledge, read **[Varnish Documentation](https://varnish-cache.org/docs/index.html)**.
 
+###### Varnish Cache with BIG-Proxy
+
+The next step should be to read the **[Varnish Cache](https://github.com/trimstray/BIG-Proxy/blob/master/doc/varnish-cache.md)** BIG-Proxy documentation.
+
 ### Nginx
 
 <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/nginx_logo.png" align="right">
@@ -56,7 +60,11 @@ To increase your knowledge, read **[Varnish Documentation](https://varnish-cache
 
 To increase your knowledge, read **[Nginx Documentation](https://nginx.org/en/docs/)**.
 
-### Resources
+###### Nginx with BIG-Proxy
+
+The next step should be to read the **[Nginx](https://github.com/trimstray/BIG-Proxy/blob/master/doc/nginx.md)** BIG-Proxy documentation.
+
+### External resources
 
 ##### Varnish Cache
 
