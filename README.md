@@ -1,13 +1,13 @@
 <h4 align="center">:small_orange_diamond: HTTP/HTTPS Proxy Stack with Varnish Cache and Nginx :small_orange_diamond:</h4>
 
-<br>
+<br><br>
 
 <p align="center">
     <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/BIG-Proxy_preview.png"
         alt="Master">
 </p>
 
-<br>
+<br><br>
 
 <p align="center">
   <a href="https://github.com/trimstray/BIG-Proxy/tree/master">
@@ -34,9 +34,11 @@
 
 ### Introduction
 
-The main goal of **BIG-Proxy** project is to create a high-performance open source proxy server for http and https traffic.
+The main goal of the **BIG-Proxy** project is to create a high-performance open source proxy server for http and https traffic for production environments.
 
-### Varnish Cache
+### BIG-Proxy Stack
+
+#### Varnish Cache
 
 <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
 
@@ -50,7 +52,7 @@ To increase your knowledge, read **[Varnish Documentation](https://varnish-cache
 
 The next step should be to read the **[Varnish Cache BIG-Proxy documentation](https://github.com/trimstray/BIG-Proxy/blob/master/doc/varnish-cache.md)**.
 
-### Nginx
+#### Nginx
 
 <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/nginx_logo.png" align="right">
 
