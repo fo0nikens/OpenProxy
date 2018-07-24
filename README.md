@@ -42,7 +42,7 @@ The main goal of **BIG-Proxy** project is to create a high-performance open sour
 
   > Before using the **Varnish Cache** please read **[Introduction](https://varnish-cache.org/intro/)**.
 
-**Varnish Cache** is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture.
+<p align="justify"><b>Varnish Cache</b> is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture.</p>
 
 To increase your knowledge, read **[Varnish Documentation](https://varnish-cache.org/docs/index.html)**.
 
@@ -52,7 +52,7 @@ To increase your knowledge, read **[Varnish Documentation](https://varnish-cache
 
   > Before using the **Nginx** please read **[Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)**.
 
-**Nginx** (/ˌɛndʒɪnˈɛks/ EN-jin-EKS) is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler.
+<p align="justify"><b>Nginx</b> (<i>/ˌɛndʒɪnˈɛks/ EN-jin-EKS</i>) is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler.</p>
 
 To increase your knowledge, read **[Nginx Documentation](https://nginx.org/en/docs/)**.
 
