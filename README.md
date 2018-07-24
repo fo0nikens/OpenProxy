@@ -64,6 +64,14 @@ To increase your knowledge, read **[Nginx Documentation](https://nginx.org/en/do
 
 The next step should be to read the **[Nginx BIG-Proxy documentation](https://github.com/trimstray/BIG-Proxy/blob/master/doc/nginx.md)**.
 
+### Configuration
+
+#### Performance
+
+#### Hardening
+
+#### Cache
+
 ### External resources
 
 ##### Varnish Cache
