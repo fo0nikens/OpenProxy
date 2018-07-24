@@ -34,7 +34,7 @@
 
 ### Introduction
 
-The main goal of this project is to create a high-performance proxy server for http and https traffic.
+The main goal of **BIG-Proxy** project is to create a high-performance open source proxy server for http and https traffic.
 
 ### Varnish Cache
 
