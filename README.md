@@ -73,11 +73,7 @@ rsync -avur --delete lib/nginx/ /etc/nginx/
 rsync -avur --delete lib/varnish-cache/ /etc/varnish/
 ```
 
-or leaving your configuration (not recommended):
-
-```bash
-rsync -avur lib/* /
-```
+For leaving your configuration (not recommended) removed `--delete` rsync param.
 
 ### Configuration
 
