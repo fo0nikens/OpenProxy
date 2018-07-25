@@ -32,7 +32,7 @@
 
 ### Introduction
 
-The main goal of the **BIG-Proxy** project is to create a high-performance open source proxy server for http and https traffic for production environments.
+The main goal of the **BIG-Proxy** project is to create a high-performance http/https open source proxy server for production environments.
 
 ### Varnish Cache
 
@@ -66,10 +66,17 @@ The next step should be to read the **[Nginx BIG-Proxy documentation](https://gi
 
   > Remember to make a copy of the current configuration and all files/directories.
 
-It's very simple:
+It's very simple - full directory sync:
 
 ```bash
-rsync -avur --delete lib/* /
+rsync -avur --delete lib/nginx/ /etc/nginx/
+rsync -avur --delete lib/varnish-cache/ /etc/varnish/
+```
+
+or leaving your configuration (not recommended):
+
+```bash
+rsync -avur lib/* /
 ```
 
 ### Configuration
