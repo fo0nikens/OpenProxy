@@ -36,7 +36,7 @@
 
 ### Introduction
 
-The main goal of the **BIG-Proxy** project is to create a high-performance open source proxy server for http and https traffic for production environments.
+The main goal of the **BIG-Proxy** project is to create a high-performance open source http/https proxy server for production environments.
 
 ### BIG-Proxy Stack
 
