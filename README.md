@@ -1,13 +1,15 @@
-<h4 align="center">:small_orange_diamond: HTTP/HTTPS Proxy Stack with Varnish Cache and Nginx :small_orange_diamond:</h4>
-
-<br><br>
+<br>
 
 <p align="center">
     <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/BIG-Proxy_preview.png"
         alt="Master">
 </p>
 
-<br><br>
+<br>
+
+<h4 align="center">:small_orange_diamond: HTTP/HTTPS Proxy Stack with Varnish Cache and Nginx :small_orange_diamond:</h4>
+
+<br>
 
 <p align="center">
   <a href="https://github.com/trimstray/BIG-Proxy/tree/master">
