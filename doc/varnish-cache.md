@@ -1,4 +1,4 @@
-###### Varnish version
+## Varnish version
 
 This configuration was tested on **varnish-5.0.0 revision 99d036f**.
 
