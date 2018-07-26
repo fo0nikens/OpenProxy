@@ -45,9 +45,9 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | sha256sum | hea
 ###### :small_blue_diamond: builtin.vcl
 
   > **type**: *file*  
-  > *The default configuration file.*
+  > *Default Varnish configuration file.*
 
-The default configuration is included with each new configuration.
+The built-in VCL subroutines are always appended to yours.
 
 ###### :small_blue_diamond: default.vcl
 
@@ -433,6 +433,7 @@ sub vcl_fini {
   > *Rules for cache.*
 
 ```
+/*
 sub req_force_cache {
 
   # Remove all cookies for static files.
@@ -475,6 +476,7 @@ sub res_force_cache {
   }
 
 }
+*/
 ```
 
 ###### :small_blue_diamond: acls/main.vcl
