@@ -1,0 +1,18 @@
+[Unit]
+Description=Varnish HTTP accelerator
+Documentation=https://www.varnish-cache.org/docs/4.1/ man:varnishd
+
+[Service]
+Type=simple
+LimitNOFILE=131072
+LimitMEMLOCK=82000
+ExecStart=/usr/sbin/varnishd -j unix,user=vcache -F -a :80 -T 127.0.0.1:81 -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,128m -p thread_pools=2
+### Turn on if you do not use LXC/LXC env:
+# PrivateDevices=true
+# PrivateNetwork=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
