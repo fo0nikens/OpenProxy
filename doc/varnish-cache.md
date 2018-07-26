@@ -31,6 +31,17 @@ lib/etc/varnish
 
 ## Configuration
 
+###### :small_blue_diamond: secret
+
+  > **type**: *file*  
+  > *"Pre Shared Key" authentication method.*
+
+If it has been removed, you must regenerate its content:
+
+```
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | sha256sum | head -c 64 >/etc/varnish/secret
+```
+
 ###### :small_blue_diamond: builtin.vcl
 
   > **type**: *file*  
