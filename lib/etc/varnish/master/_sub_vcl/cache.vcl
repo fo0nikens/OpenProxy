@@ -1,3 +1,4 @@
+/*
 sub req_force_cache {
 
   # Remove all cookies for static files.
@@ -40,3 +41,4 @@ sub res_force_cache {
   }
 
 }
+*/
