@@ -1,28 +1,47 @@
-  > :bangbang: Remember to make a copy of the current configuration and all files/directories. :bangbang:
-
-#### Installation
-
-The configuration for the Varnish server is located in **src/varnish-cache**.
-
-It's very simple:
-
-```bash
-rsync -avur --delete lib/varnish-cache/* /
-```
-
-###### Which Varnish version?
+###### Varnish version
 
 This configuration was tested on **varnish-5.0.0 revision 99d036f**.
 
+## Filesystem structure
+
+```
+tree lib/etc/varnish 
+lib/etc/varnish
+├── builtin.vcl
+├── default.vcl
+└── master
+    ├── acls
+    │   └── main.vcl
+    ├── backends
+    │   ├── main.vcl
+    │   └── probes.vcl
+    ├── domains
+    │   └── example.com
+    │       ├── backends.vcl
+    │       └── main.vcl
+    ├── _static
+    │   ├── error_maintenance.vcl
+    │   ├── invalid_domain.vcl
+    │   └── synth_maintenance.vcl
+    └── _sub_vcl
+        └── cache.vcl
+
+7 directories, 11 files
+```
+
 ## Configuration
 
-### :white_square_button: varnish/builtin.vcl
+###### :small_blue_diamond: builtin.vcl
+
+  > **type**: *file*  
+  > *The default configuration file.*
 
 The default configuration is included with each new configuration.
 
-### :white_square_button: varnish/default.vcl
+###### :small_blue_diamond: default.vcl
 
-The main Varnish server configuration file adapted from the default configuration (contains default entries to better visualize the configuration).
+  > **type**: *file*  
+  > *Configuration file adapted from the default configuration (contains default entries to better visualize the configuration).*
 
 ```
 ################################################################################
@@ -43,7 +62,7 @@ import std;
 ################################################################################
 
 # External subroutines.
-include "/etc/varnish/master/_sub_vcl/main.vcl";
+include "/etc/varnish/master/_sub_vcl/cache.vcl";
 
 ################################################################################
 ##################################### ACLS #####################################
@@ -72,7 +91,7 @@ include "/etc/varnish/master/domains/example.com/backends.vcl";
 # Include subroutines domain configuration.
 include "/etc/varnish/master/domains/example.com/main.vcl";
 
-#######################################################################
+################################################################################
 # Client side
 
 sub vcl_recv {
@@ -85,13 +104,11 @@ sub vcl_recv {
 
   }
 
-# ``````````````````````````````````````````````````````````````````````````````
-
   if (req.method == "PRI") {
 
-    /* This will never happen in properly formed traffic (see: RFC7540) */
+    /* We do not support SPDY or HTTP/2.0 */
     return (synth(405));
-  
+
   }
 
   if (req.method != "GET" &&
@@ -102,17 +119,17 @@ sub vcl_recv {
       req.method != "OPTIONS" &&
       req.method != "DELETE" &&
       req.method != "PATCH") {
-  
+
     /* Non-RFC2616 or CONNECT which is weird. */
     return (pipe);
-    
+
   }
 
   if (req.method != "GET" && req.method != "HEAD") {
 
     /* We only deal with GET and HEAD by default */
     return (pass);
-  
+
   }
 
   if (req.http.Authorization || req.http.Cookie) {
@@ -133,7 +150,6 @@ sub vcl_pipe {
   # (potentially) wrong backend. If you do want this to happen, you can undo
   # it here.
   # unset bereq.http.connection;
-
   return (pipe);
 
 }
@@ -147,18 +163,18 @@ sub vcl_pass {
 sub vcl_hash {
 
   hash_data(req.url);
-  
+
   if (req.http.host) {
-  
+
     hash_data(req.http.host);
-  
   }
+
   else {
-  
+
     hash_data(server.ip);
-    
+
   }
-  
+
   return (lookup);
 
 }
@@ -172,20 +188,20 @@ sub vcl_purge {
 sub vcl_hit {
 
   if (obj.ttl >= 0s) {
-  
-    // A pure unadulterated hit, deliver it
+
+    // A pure unadultered hit, deliver it
     return (deliver);
-    
+
   }
-  
+
   if (obj.ttl + obj.grace > 0s) {
-  
+
     // Object is in grace, deliver it
     // Automatically triggers a background fetch
     return (deliver);
-    
+
   }
-  
+
   // fetch & deliver once we get the result
   return (miss);
 
@@ -193,7 +209,7 @@ sub vcl_hit {
 
 sub vcl_miss {
 
-    return (fetch);
+  return (fetch);
 
 }
 
@@ -211,13 +227,15 @@ sub vcl_deliver {
     set resp.http.X-Cache = "HIT";
 
   }
+
   else {
 
     set resp.http.X-Cache = "MISS";
 
   }
 
-  # Set security headers.
+  # Set security headers (only for http traffic, for https protocol headers
+  # should be set in Nginx configuration.
   set resp.http.Access-Control-Allow-Origin =  "*";
   set resp.http.X-XSS-Protection = "1; mode=block";
   set resp.http.X-Content-Type-Options = "nosniff";
@@ -246,6 +264,9 @@ sub vcl_deliver {
 
 }
 
+/*
+ * We can come here "invisibly" with the following errors: 500 & 503
+ */
 sub vcl_synth {
 
   # HTTP 301 redirect.
@@ -298,17 +319,17 @@ sub vcl_synth {
 
 }
 
-#######################################################################
+################################################################################
 # Backend Fetch
 
 sub vcl_backend_fetch {
 
   if (bereq.method == "GET") {
-  
+
     unset bereq.body;
-    
+
   }
-  
+
   return (fetch);
 
 }
@@ -316,23 +337,24 @@ sub vcl_backend_fetch {
 sub vcl_backend_response {
 
   if (bereq.uncacheable) {
-  
+
     return (deliver);
-    
+
   }
+
   else if (beresp.ttl <= 0s ||
            beresp.http.Set-Cookie ||
            beresp.http.Surrogate-control ~ "no-store" ||
-           (!beresp.http.Surrogate-Control &&
+          (!beresp.http.Surrogate-Control &&
            beresp.http.Cache-Control ~ "no-cache|no-store|private") ||
            beresp.http.Vary == "*") {
-    
-    # Mark as "Hit-For-Miss" for the next 2 minutes
+
+    # Mark as "Hit-For-Pass" for the next 2 minutes
     set beresp.ttl = 120s;
     set beresp.uncacheable = true;
-    
+
   }
-  
+
   set beresp.http.X-Cache-Time = beresp.ttl;
 
   return (deliver);
@@ -358,12 +380,12 @@ sub vcl_backend_error {
   </body>
 </html>
 "};
-  
+
   return (deliver);
 
 }
 
-#######################################################################
+################################################################################
 # Housekeeping
 
 sub vcl_init {
@@ -379,9 +401,25 @@ sub vcl_fini {
 }
 ```
 
-### :white_square_button: master/_sub_vcl/main.vcl
+###### :small_blue_diamond: _static/error_maintenance.vcl
 
-Contains subroutines created by the administrator.
+  > **type**: *file*  
+  > *Contains error maintenance static site.*
+
+###### :small_blue_diamond: _static/invalid_domain.vcl
+
+  > **type**: *file*  
+  > *Contains invalid domain static site.*
+
+###### :small_blue_diamond: _static/synth_maintenance.vcl
+
+  > **type**: *file*  
+  > *Contains synth maintenance static site.*
+
+###### :small_blue_diamond: _sub_vcl/cache.vcl
+
+  > **type**: *file*  
+  > *Rules for cache.*
 
 ```
 sub req_force_cache {
@@ -428,9 +466,10 @@ sub res_force_cache {
 }
 ```
 
-### :white_square_button: master/acls/main.vcl
+###### :small_blue_diamond: acls/main.vcl
 
-Contains access control lists.
+  > **type**: *file*  
+  > *Contains access control lists.*
 
 ```
 #
@@ -447,7 +486,7 @@ acl localhost {
 /*
 acl acl_purge_internal {
 
-  "192.168.250.10/32";
+  "10.255.253.10/32";
 
 }
 
@@ -460,7 +499,7 @@ acl acl_purge_external {
 
 acl acl_forbidden_internal {
 
-  "192.168.250.11/32";
+  "10.255.253.124/32";
 
 }
 
@@ -491,9 +530,10 @@ acl acl_globals_external {
 */
 ```
 
-### :white_square_button: master/backends/main.vcl
+###### :small_blue_diamond: backends/main.vcl
 
-The main configuration file for backends.
+  > **type**: *file*  
+  > *Main configuration file for backends*
 
 ```
 #
@@ -516,9 +556,10 @@ include "/etc/varnish/master/domains/example.com/backends.vcl";
 */
 ```
 
-### :white_square_button: master/backends/probes.vcl
+###### :small_blue_diamond: backends/probes.vcl
 
-The main configuration file with probes for backends.
+  > **type**: *file*  
+  > *Main configuration file with probes for backends.*
 
 ```
 probe pb_basic {
@@ -550,13 +591,10 @@ probe pb_extended {
 */
 ```
 
-### :white_square_button: master/domains/example.com
+###### :small_blue_diamond: domains/example.com/main.vcl
 
-The main directory for example.com domain.
-
-#### :arrow_right: master/domains/example.com/main.vcl
-
-The main configuration file for example.com domain.
+  > **type**: *file*  
+  > *Main configuration file for example.com domain.*
 
 ```
 acl example_com_allow {
@@ -569,18 +607,20 @@ acl example_com_allow {
 
 sub vcl_recv {
 
-  if (req.http.host ~ "^(www.)?example.com$" ) {
+  if (req.http.host ~ "^(www.)?example.com$") {
 
     if (req.http.host ~ "^www.example.com$") {
 
       return(synth(751, "https://example.com" + req.url));
 
     }
+
     else if (req.http.X-Forwarded-Proto != "https") {
 
       return(synth(751, "https://example.com" + req.url));
 
     }
+
     else if ((req.url ~ "^/backend.*")) {
 
       if (client.ip ~ localhost || client.ip ~ example_com_allow) {
@@ -589,6 +629,7 @@ sub vcl_recv {
         return(pass);
 
       }
+
       else {
 
         return(synth(751, "https://example.com"));
@@ -596,8 +637,9 @@ sub vcl_recv {
       }
 
     }
+
     # Pipe these paths directly to backend for streaming.
-    else if ( req.url ~ "^/system/files" ) {
+    else if ( req.url ~ "^/system/files") {
 
       return(pipe);
 
@@ -609,6 +651,7 @@ sub vcl_recv {
       # set req.backend_hint = hash_ip_example_com_lb.backend(req.http.X-Real-IP);
 
       set req.backend_hint = example_com_lb.backend();
+
       # return(pass);
 
     }
@@ -619,33 +662,33 @@ sub vcl_recv {
 
 sub vcl_backend_response {
 
-  if (bereq.http.host ~ "^(www.)?example.com$" ) {
+  if (bereq.http.host ~ "^(www.)?example.com$") {
 
-    /*
-    if (beresp.http.x-no-session) {
+  /*
+  if (beresp.http.x-no-session) {
 
-      unset beresp.http.cache-control;
-      unset beresp.http.pragma;
+    unset beresp.http.cache-control;
+    unset beresp.http.pragma;
 
-      unset beresp.http.Set-Cookie;
+    unset beresp.http.Set-Cookie;
 
-      set beresp.http.X-Cacheable = "YES:No-Session";
-      set beresp.ttl = 180s;
-      set beresp.http.cache-control = "max-age=180";
+    set beresp.http.X-Cacheable = "YES:No-Session";
+    set beresp.ttl = 180s;
+    set beresp.http.cache-control = "max-age=180";
 
-    }
-    */
+  }
+  */
 
-    # Enabling cache by disabling headers.
-    # https://book.varnish-software.com/4.0/chapters/HTTP.html#cache-related-headers-fields
-    # Uncomment for specific urls:
-    # if (bereq.url ~ "^/$") {
+  # Enabling cache by disabling headers.
+  # https://book.varnish-software.com/4.0/chapters/HTTP.html#cache-related-headers-fields
+  # Uncomment for specific urls:
+  # if (bereq.url ~ "^/$") {
 
-      unset beresp.http.expires;
-      unset beresp.http.etag;
-      unset beresp.http.vary;
+    unset beresp.http.expires;
+    unset beresp.http.etag;
+    unset beresp.http.vary;
 
-    # }
+  # }
 
   }
 
@@ -653,7 +696,7 @@ sub vcl_backend_response {
 
 sub vcl_deliver {
 
-  if (req.http.host ~ "^(www.)?example.com$" ) {
+  if (req.http.host ~ "^(www.)?example.com$") {
 
     # set resp.http.Access-Control-Allow-Origin =  "*";
     # set resp.http.X-XSS-Protection = "1; mode=block";
@@ -665,7 +708,7 @@ sub vcl_deliver {
 
 sub vcl_backend_error {
 
-  if (bereq.http.host ~ "^(www.)?example.com$" ) {
+  if (bereq.http.host ~ "^(www.)?example.com$") {
 
     if (beresp.status == 500 ||
         beresp.status == 501 ||
@@ -689,7 +732,7 @@ sub vcl_backend_error {
 
 sub vcl_synth {
 
-  if (req.http.host ~ "^(www.)?example.com$" ) {
+  if (req.http.host ~ "^(www.)?example.com$") {
 
     if (resp.status == 404 ) {
 
@@ -700,6 +743,7 @@ sub vcl_synth {
       return(deliver);
 
     }
+
     else if (resp.status >= 500 && resp.status <= 505) {
 
       return(restart);
@@ -709,5 +753,47 @@ sub vcl_synth {
   }
 
 }
+```
 
+###### :small_blue_diamond: domains/example.com/backends.vcl
+
+  > **type**: *file*  
+  > *Main configuration file for example.com domain backends.*
+
+```
+backend BK_WEB_backend_0 {
+
+  .host = "192.168.240.71";
+  .port = "80";
+  .probe = pb_basic;
+
+}
+
+backend BK_WEB_backend_1 {
+
+  .host = "192.168.240.72";
+  .port = "80";
+  .probe = pb_basic;
+
+}
+
+# ``````````````````````````````````````````````````````````````````````````````
+
+sub vcl_init {
+
+  new example_com_lb = directors.round_robin();
+
+  example_com_lb.add_backend(BK_WEB_backend_0);
+  example_com_lb.add_backend(BK_WEB_backend_1);
+
+}
+
+sub vcl_init {
+
+  new hash_ip_example_com_lb = directors.hash();
+
+  hash_ip_example_com_lb.add_backend(BK_WEB_backend_0, 1.0);
+  hash_ip_example_com_lb.add_backend(BK_WEB_backend_1, 1.0);
+
+}
 ```
