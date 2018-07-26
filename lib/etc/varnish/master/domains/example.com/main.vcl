@@ -40,7 +40,7 @@ sub vcl_recv {
     }
 
     # Pipe these paths directly to backend for streaming.
-    else if ( req.url ~ "^/system/files") {
+    else if (req.url ~ "^/system/files") {
 
       return(pipe);
 
