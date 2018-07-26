@@ -77,6 +77,21 @@ For leaving your configuration (not recommended) remove `--delete` rsync param.
 
 ### Configuration
 
+#### New domain
+
+###### Varnish
+
+```bash
+cd /etc/varnish/master
+cp -R example.com/ new_domain
+```
+
+and replace *example.com* to your domain name:
+
+```bash
+sed -i 's/example.com/new_domain/g' *
+```
+
 #### Performance
 
 #### Hardening
