@@ -64,6 +64,13 @@ lib/etc/nginx
 14 directories, 39 files
 ```
 
+## Helpful aliases
+
+```bash
+alias nginx.test='nginx -t -c /etc/nginx/nginx.conf'
+alias nginx.gen='systemctl reload nginx'
+```
+
 ## Configuration
 
 ###### :small_blue_diamond: nginx.conf

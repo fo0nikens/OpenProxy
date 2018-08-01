@@ -29,6 +29,13 @@ lib/etc/varnish
 7 directories, 11 files
 ```
 
+## Helpful aliases
+
+```bash
+alias varnish.test='varnishd -C -f /etc/varnish/default.vcl'
+alias varnish.gen='_xr=$(date +%s | sha256sum | base64 | head -c 12 ; echo) ; varnishadm vcl.load vcl_${_xr} /etc/varnish/default.vcl && varnishadm vcl.use vcl_${_xr}'
+```
+
 ## Configuration
 
 ###### :small_blue_diamond: secret
