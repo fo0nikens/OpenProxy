@@ -1,2 +1,0 @@
-alias varnish.test='varnishd -C -f /etc/varnish/default.vcl'
-alias varnish.gen='_xr=${RANDOM} ; varnishadm vcl.load vcl_${_xr} /etc/varnish/default.vcl && varnishadm vcl.use vcl_${_xr}'
