@@ -81,22 +81,63 @@ For leaving your configuration (not recommended) remove `--delete` rsync param.
 
 ###### Varnish
 
+Added to **default.vcl**:
+
 ```bash
-cd /etc/varnish/master
-cp -R example.com/ new_domain
+### BACKENDS DEFINITION
+include "/etc/varnish/master/domains/your.domain/backends.vcl";
+
+### DOMAINS DEFINITION
+include "/etc/varnish/master/domains/your.domain/main.vcl";
+```
+
+Clone to your domain directory:
+
+```bash
+cd /etc/varnish/master/domains
+cp -R example.com/ your.domain
 ```
 
 and replace *example.com* to your domain name:
 
 ```bash
-sed -i 's/example.com/new_domain/g' *
+cd your.domain
+sed -i 's/example.com/your.domain/g' *
+sed -i 's/example_com/your_domain/g' *
 ```
 
-#### Performance
+###### Nginx
 
-#### Hardening
+```bash
+cd /etc/nginx/master/
+cat >> domains.com << __EOF__
+# Configuration for your.domain domain.
+include                         /etc/nginx/master/_domains/your.domain/servers.conf;
+include                         /etc/nginx/master/_domains/your.domain/backends.conf;
+__EOF__
 
-#### Cache
+cd _domains
+cp -R example.com/ your.domain
+```
+
+and replace *example.com* to your domain name:
+
+```bash
+cd domains/your.domain
+sed -i 's/example.com/your.domain/g' *
+sed -i 's/example_com/your_domain/g' *
+```
+
+#### Error pages
+
+For example:
+
+```bash
+cd /usr/share/www/
+
+git clone https://github.com/trimstray/http-error-pages && cd http-error-pages
+./httpgen
+```
 
 ### External resources
 
