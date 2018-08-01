@@ -19,7 +19,7 @@ lib/etc/varnish
     │   └── example.com
     │       ├── backends.vcl
     │       └── main.vcl
-    ├── _static
+    ├── master/_static
     │   ├── error_maintenance.vcl
     │   ├── invalid_domain.vcl
     │   └── synth_maintenance.vcl
@@ -36,7 +36,7 @@ alias varnish.test='varnishd -C -f /etc/varnish/default.vcl'
 alias varnish.gen='_xr=$(date +%s | sha256sum | base64 | head -c 12 ; echo) ; varnishadm vcl.load vcl_${_xr} /etc/varnish/default.vcl && varnishadm vcl.use vcl_${_xr}'
 ```
 
-## Configuration
+## Configuration (lib/etc/varnish)
 
 ###### :small_blue_diamond: secret
 
@@ -419,22 +419,22 @@ sub vcl_fini {
 }
 ```
 
-###### :small_blue_diamond: _static/error_maintenance.vcl
+###### :small_blue_diamond: master/_static/error_maintenance.vcl
 
   > **type**: *file*  
   > *Contains error maintenance static site.*
 
-###### :small_blue_diamond: _static/invalid_domain.vcl
+###### :small_blue_diamond: master/_static/invalid_domain.vcl
 
   > **type**: *file*  
   > *Contains invalid domain static site.*
 
-###### :small_blue_diamond: _static/synth_maintenance.vcl
+###### :small_blue_diamond: master/_static/synth_maintenance.vcl
 
   > **type**: *file*  
   > *Contains synth maintenance static site.*
 
-###### :small_blue_diamond: _sub_vcl/cache.vcl
+###### :small_blue_diamond: master/_sub_vcl/cache.vcl
 
   > **type**: *file*  
   > *Rules for cache.*
@@ -486,7 +486,7 @@ sub res_force_cache {
 */
 ```
 
-###### :small_blue_diamond: acls/main.vcl
+###### :small_blue_diamond: master/acls/main.vcl
 
   > **type**: *file*  
   > *Contains access control lists.*
@@ -550,7 +550,7 @@ acl acl_globals_external {
 */
 ```
 
-###### :small_blue_diamond: backends/main.vcl
+###### :small_blue_diamond: master/backends/main.vcl
 
   > **type**: *file*  
   > *Main configuration file for backends*
@@ -576,7 +576,7 @@ include "/etc/varnish/master/domains/example.com/backends.vcl";
 */
 ```
 
-###### :small_blue_diamond: backends/probes.vcl
+###### :small_blue_diamond: master/backends/probes.vcl
 
   > **type**: *file*  
   > *Main configuration file with probes for backends.*
@@ -611,7 +611,7 @@ probe pb_extended {
 */
 ```
 
-###### :small_blue_diamond: domains/example.com/main.vcl
+###### :small_blue_diamond: master/domains/example.com/main.vcl
 
   > **type**: *file*  
   > *Main configuration file for example.com domain.*
@@ -758,7 +758,7 @@ sub vcl_synth {
 
       set resp.http.Server = "Unknown";
 
-      include "/etc/varnish/master/_static/invalid_domain.vcl";
+      include "/etc/varnish/master/master/_static/invalid_domain.vcl";
 
       return(deliver);
 
@@ -775,7 +775,7 @@ sub vcl_synth {
 }
 ```
 
-###### :small_blue_diamond: domains/example.com/backends.vcl
+###### :small_blue_diamond: master/domains/example.com/backends.vcl
 
   > **type**: *file*  
   > *Main configuration file for example.com domain backends.*

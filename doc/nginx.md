@@ -71,7 +71,7 @@ alias nginx.test='nginx -t -c /etc/nginx/nginx.conf'
 alias nginx.gen='systemctl reload nginx'
 ```
 
-## Configuration
+## Configuration (lib/etc/nginx)
 
 ###### :small_blue_diamond: nginx.conf
 
@@ -154,7 +154,7 @@ load_module                     /usr/share/nginx/modules/ngx_stream_module.so;
 
 ___
 
-### Global configuration
+### Global configuration (lib/etc/nginx/master)
 
 ###### :small_blue_diamond: master/globals.conf
 
