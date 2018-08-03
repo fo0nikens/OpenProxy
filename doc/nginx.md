@@ -5,7 +5,7 @@ This configuration was tested on **nginx/1.10.3**. Before installing the service
 ## Filesystem structure
 
 ```
-tree lib/etc/nginx
+$ tree lib/etc/nginx
 lib/etc/nginx
 ├── dhparams_4096.pem
 ├── fastcgi.conf
