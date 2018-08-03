@@ -77,11 +77,11 @@ For leaving your configuration (not recommended) remove `--delete` rsync param.
 
 ### Configuration
 
-#### New domain
+#### Initialize new domain
 
-###### Varnish
+###### Varnish Cache
 
-Added to **default.vcl**:
+Added your domain definitions to **default.vcl**:
 
 ```bash
 ### BACKENDS DEFINITION
@@ -106,7 +106,11 @@ sed -i 's/example.com/your.domain/g' *
 sed -i 's/example_com/your_domain/g' *
 ```
 
+  > Remember to adjust the configuration to your needs.
+
 ###### Nginx
+
+Added your domain definitions to **domains.com**:
 
 ```bash
 cd /etc/nginx/master/
@@ -128,6 +132,12 @@ sed -i 's/example.com/your.domain/g' *
 sed -i 's/example_com/your_domain/g' *
 ```
 
+  > Remember to adjust the configuration to your needs.
+
+#### Aliases
+
+Import aliases from **lib/etc/skel/aliases** to your shell init file and reload shell session with `exec $SHELL -l`.
+
 #### Error pages
 
 For example:
@@ -137,6 +147,101 @@ cd /usr/share/www/
 
 git clone https://github.com/trimstray/http-error-pages && cd http-error-pages
 ./httpgen
+```
+
+#### Before init services
+
+- reinit **systemd** configuration: `systemctl daemon-reload`
+- adjust **/etc/default/varnish**
+
+### Maintenance
+
+##### Varnish Cache
+
+###### Show config params
+
+```bash
+varnishadm param.show
+varnishadm param.show max_retries
+```
+
+###### Show boot configuration
+
+```bash
+varnishadm vcl.show boot
+```
+
+###### Compile new configuration
+
+```bash
+varnishadm vcl.load config_name /etc/varnish/default.vcl
+```
+
+###### Load new configuration
+
+```bash
+varnishadm vcl.use config_name
+```
+
+###### Show backend list
+
+```bash
+varnishadm backend.list
+```
+
+###### Drop objects from cache
+
+```bash
+varnishadm ban req.http.host == example.com
+varnishadm ban "req.http.host == example.com && req.url == /backend.*"
+```
+
+###### Show backends health
+
+```bash
+varnishlog -g raw -i Backend_health
+```
+
+###### Show all requests (without filters)
+
+```bash
+varnishlog -g request
+```
+
+###### Show all requests and responses (raw format)
+
+```bash
+varnishlog -g raw
+```
+
+###### Show requests with specific Host header
+
+```bash
+varnishlog -g request -q "ReqHeader eq 'Host: example.com'" -i Begin,ReqMethod,ReqUrl,ReqHeader
+```
+
+###### Show requests with specific User-Agent header
+
+```bash
+varnishlog -g request -q "ReqHeader eq 'User-Agent: x-bypass'"
+```
+
+###### Show requests with HTTP 200 status
+
+```bash
+varnishlog -i BackendOpen,BereqURL -q "BerespStatus == 200"
+```
+
+###### Show requests with HTTP 503 status from backends
+
+```bash
+varnishlog -d -q 'RespStatus == 503' -g request
+```
+
+###### Show requests with Backend Fetch Error
+
+```bash
+varnishlog -b -q 'FetchError'
 ```
 
 ### External resources
@@ -160,6 +265,7 @@ git clone https://github.com/trimstray/http-error-pages && cd http-error-pages
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://kly.no/varnish/regex.txt"><b>Varnish Regexp</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://docs.fastly.com/guides/vcl/vcl-regular-expression-cheat-sheet.html"><b>VCL regular expression cheat sheet</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://www.hostingadvice.com/how-to/varnish-regex/"><b>5 Basic Tips to Using Regular Expressions in Varnish</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://feryn.eu/blog/varnishlog-measure-varnish-cache-performance/"><b>Varnishlog: measure your Varnish cache performance</b></a><br>
 </p>
 
 ##### Nginx
