@@ -23,27 +23,27 @@ include "/etc/varnish/master/_sub_vcl/cache.vcl";
 ################################################################################
 
 # Localhost, private and public addresses.
-include "/etc/varnish/master/acls/main.vcl";
+include "/etc/varnish/master/_acls/main.vcl";
 
 ################################################################################
 ############################# BACKENDS DEFINITION ##############################
 ################################################################################
 
 # VCL probes definition.
-include "/etc/varnish/master/backends/probes.vcl";
+include "/etc/varnish/master/_backends/probes.vcl";
 
 # Localhost and specific backends configuration.
-include "/etc/varnish/master/backends/main.vcl";
+include "/etc/varnish/master/_backends/main.vcl";
 
 # Include domain backend configuration.
-include "/etc/varnish/master/domains/example.com/backends.vcl";
+include "/etc/varnish/master/_domains/example.com/backends.vcl";
 
 ################################################################################
 ############################## DOMAINS DEFINITION ##############################
 ################################################################################
 
 # Include subroutines domain configuration.
-include "/etc/varnish/master/domains/example.com/main.vcl";
+include "/etc/varnish/master/_domains/example.com/main.vcl";
 
 ################################################################################
 # Client side
