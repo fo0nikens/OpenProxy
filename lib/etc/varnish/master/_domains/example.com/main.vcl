@@ -89,6 +89,11 @@ sub vcl_backend_response {
     unset beresp.http.etag;
     unset beresp.http.vary;
 
+    # Set Cache Control for specific urls.
+    # set beresp.http.X-Cacheable = "YES:No-Session";
+    # set beresp.ttl = 5s;
+    # set beresp.http.cache-control = "max-age:5";
+
   # }
 
   }

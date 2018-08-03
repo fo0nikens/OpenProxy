@@ -143,20 +143,20 @@ sub vcl_hit {
 
   if (obj.ttl >= 0s) {
 
-    // A pure unadultered hit, deliver it
+    // A pure unadultered hit, deliver it.
     return (deliver);
 
   }
 
   if (obj.ttl + obj.grace > 0s) {
 
-    // Object is in grace, deliver it
-    // Automatically triggers a background fetch
+    // Object is in grace, deliver it.
+    // Automatically triggers a background fetch.
     return (deliver);
 
   }
 
-  // fetch & deliver once we get the result
+  // fetch & deliver once we get the result.
   return (miss);
 
 }
@@ -188,11 +188,12 @@ sub vcl_deliver {
 
   }
 
-  # Set security headers (only for http traffic, for https protocol headers
-  # should be set in Nginx configuration.
-  set resp.http.Access-Control-Allow-Origin =  "*";
-  set resp.http.X-XSS-Protection = "1; mode=block";
-  set resp.http.X-Content-Type-Options = "nosniff";
+  # Set security headers (only for http traffic, for http+https protocol headers
+  # should be set in Nginx configuration. Uncomment if you use redirects from
+  # http to https.
+  # set resp.http.Access-Control-Allow-Origin =  "*";
+  # set resp.http.X-XSS-Protection = "1; mode=block";
+  # set resp.http.X-Content-Type-Options = "nosniff";
 
   # Please note that obj.hits behaviour changed in 4.0, now it counts per
   # objecthead, not per object and obj.hits may not be reset in some cases
@@ -219,7 +220,7 @@ sub vcl_deliver {
 }
 
 /*
- * We can come here "invisibly" with the following errors: 500 & 503
+ * We can come here "invisibly" with the following errors: 500 & 503.
  */
 sub vcl_synth {
 
@@ -259,12 +260,8 @@ sub vcl_synth {
     <title>"} + resp.status + " " + resp.reason + {"</title>
   </head>
   <body>
-    <h1>Error "} + resp.status + " " + resp.reason + {"</h1>
-    <p>"} + resp.reason + {"</p>
-    <h3>Guru Meditation:</h3>
-    <p>XID: "} + req.xid + {"</p>
-    <hr>
-    <p>Varnish cache server</p>
+    <h2>Error "} + resp.status + " " + resp.reason + {"</h1>
+    <p>ID: "} + req.xid + {"</p>
   </body>
 </html>
 "};
@@ -303,7 +300,7 @@ sub vcl_backend_response {
            beresp.http.Cache-Control ~ "no-cache|no-store|private") ||
            beresp.http.Vary == "*") {
 
-    # Mark as "Hit-For-Pass" for the next 2 minutes
+    # Mark as "Hit-For-Pass" for the next 2 minutes.
     set beresp.ttl = 120s;
     set beresp.uncacheable = true;
 
@@ -322,15 +319,11 @@ sub vcl_backend_error {
   set beresp.body = {"<!DOCTYPE html>
 <html>
   <head>
-    <title>"} + beresp.status + " " + beresp.reason + {"</title>
+    <title>"} + resp.status + " " + resp.reason + {"</title>
   </head>
   <body>
-    <h1>Error "} + beresp.status + " " + beresp.reason + {"</h1>
-    <p>"} + beresp.reason + {"</p>
-    <h3>Guru Meditation:</h3>
-    <p>XID: "} + bereq.xid + {"</p>
-    <hr>
-    <p>Varnish cache server</p>
+    <h2>Error "} + resp.status + " " + resp.reason + {"</h1>
+    <p>ID: "} + req.xid + {"</p>
   </body>
 </html>
 "};
