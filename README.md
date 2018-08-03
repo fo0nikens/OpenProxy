@@ -331,7 +331,7 @@ varnishlog -b -q 'FetchError'
 
 - [ ] Add more useful aliases
 - [ ] Add more examples for varnish tools
-- [ ] Automates init new domains
+- [ ] Automates initializing new domains
 
 ### Contributing
 
