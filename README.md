@@ -77,7 +77,7 @@ For leaving your configuration (not recommended) remove `--delete` rsync param.
 
 ### Configuration
 
-#### Initialize new domain
+#### Initializing new domain
 
 ###### Varnish Cache
 
@@ -326,6 +326,12 @@ varnishlog -b -q 'FetchError'
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://securityheaders.com/"><b>Analyse the HTTP response headers by Security Headers</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://observatory.mozilla.org/"><b>Analyze your website by Mozilla Observatory</b></a><br>
 </p>
+
+### :ballot_box_with_check: Todo
+
+- [ ] Add more useful aliases
+- [ ] Add more examples for varnish tools
+- [ ] Automates init new domains
 
 ### Contributing
 
