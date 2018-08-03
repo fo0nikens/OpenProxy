@@ -34,6 +34,8 @@
 
 The main goal of the **BIG-Proxy** project is to create a high-performance http/https open source proxy server for production environments.
 
+If you don't want to use both services at the same time, nothing prevents you from using the configurations only for a specific http/https server.
+
 ### Varnish Cache
 
 <img src="https://github.com/trimstray/BIG-Proxy/blob/master/doc/img/varnish_software_logo.png" align="right">
