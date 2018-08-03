@@ -278,7 +278,6 @@ varnishlog -b -q 'FetchError'
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/h5bp/server-configs-nginx"><b>Nginx boilerplate configs</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/nginx-boilerplate/nginx-boilerplate"><b>Awesome Nginx configuration template</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/yandex/gixy"><b>Nginx static analyzer</b></a><br>
-&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/nbs-system/naxsi"><b>WAF for Nginx</b></a><br>
 </p>
 
 ###### Cheatsheets
@@ -287,6 +286,19 @@ varnishlog -b -q 'FetchError'
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://gist.github.com/carlessanagustin/9509d0d31414804da03b"><b>Nginx Cheatsheet</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/SimulatedGREG/nginx-cheatsheet"><b>Nginx Quick Reference</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://mijndertstuij.nl/writing/posts/nginx-cheatsheet/"><b>Nginx Cheatsheet by Mijdert Stuij</b></a><br>
+</p>
+
+##### Performance & Hardening
+
+<p>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/comotion/security.vcl"><b>Protect your websites with Varnish rules</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/varnish/varnish-modules"><b>Collection of Varnish Cache modules (vmods) by Varnish Software</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/nbs-system/naxsi"><b>WAF for Nginx</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://geekflare.com/install-modsecurity-on-nginx/"><b>ModSecurity for Nginx</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps"><b>How to Build a Tough NGINX Server in 15 Steps</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html"><b>Top 25 Nginx Web Server Best Security Practices</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html"><b>Strong SSL Security on Nginx</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://enable-cors.org/index.html"><b>Enable cross-origin resource sharing (CORS)</b></a><br>
 </p>
 
 ##### Comparison
@@ -309,6 +321,10 @@ varnishlog -b -q 'FetchError'
 <p>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://regexr.com/"><b>Online tool to learn, build, & test Regular Expressions</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://www.regextester.com/"><b>Online Regex Tester & Debugger</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://www.ssllabs.com/ssltest/"><b>SSL Server Test</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://cipherli.st/"><b>Strong ciphers for Apache, Nginx, Lighttpd and more</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://securityheaders.com/"><b>Analyse the HTTP response headers by Security Headers</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://observatory.mozilla.org/"><b>Analyze your website by Mozilla Observatory</b></a><br>
 </p>
 
 ### Contributing
