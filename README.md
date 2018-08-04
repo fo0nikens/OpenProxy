@@ -112,11 +112,11 @@ sed -i 's/example_com/your_domain/g' *
 
 ###### Nginx
 
-Added your domain definitions to **domains.com**:
+Added your domain definitions to **domains.conf**:
 
 ```bash
 cd /etc/nginx/master/
-cat >> domains.com << __EOF__
+cat >> domains.conf << __EOF__
 # Configuration for your.domain domain.
 include                         /etc/nginx/master/_domains/your.domain/servers.conf;
 include                         /etc/nginx/master/_domains/your.domain/backends.conf;
@@ -138,7 +138,7 @@ sed -i 's/example_com/your_domain/g' *
 
 #### Aliases
 
-Import aliases from **lib/etc/skel/aliases** to your shell init file and reload shell session with `exec $SHELL -l`.
+Import aliases from `lib/etc/skel/aliases` to your shell init file and reload shell session with `exec $SHELL -l`.
 
 #### Error pages
 
@@ -154,7 +154,7 @@ git clone https://github.com/trimstray/http-error-pages && cd http-error-pages
 #### Before init services
 
 - reinit **systemd** configuration: `systemctl daemon-reload`
-- adjust **/etc/default/varnish**
+- adjust `/etc/default/varnish`
 
 ### Maintenance
 
