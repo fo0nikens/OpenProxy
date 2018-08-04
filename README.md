@@ -3,7 +3,7 @@
         alt="Master">
 </p>
 
-<h4 align="center">:small_orange_diamond: Open Source Http(s) Proxy Stack with Varnish Cache & Nginx (beta version) :small_orange_diamond:</h4>
+<h4 align="center">:small_orange_diamond: still beta version :small_orange_diamond:</h4>
 
 <br>
 
