@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/trimstray/ohps/blob/master/doc/img/ohps_preview.png"
+    <img src="https://github.com/trimstray/OpenProxy/blob/master/doc/img/OpenProxy_preview.png"
         alt="Master">
 </p>
 
@@ -8,7 +8,7 @@
 <br>
 
 <p align="center">
-  <a href="https://github.com/trimstray/ohps/tree/master">
+  <a href="https://github.com/trimstray/OpenProxy/tree/master">
     <img src="https://img.shields.io/badge/Branch-master-green.svg?longCache=true"
         alt="Branch">
   </a>
@@ -21,7 +21,7 @@
 <div align="center">
   <sub>Created by
   <a href="https://twitter.com/trimstray">trimstray</a> and
-  <a href="https://github.com/trimstray/ohps/graphs/contributors">
+  <a href="https://github.com/trimstray/OpenProxy/graphs/contributors">
     contributors
   </a>
 </div>
@@ -32,13 +32,13 @@
 
 ### Introduction
 
-The main goal of the **ohps** (_Open Source Http(s) Proxy Stack_) project is to create a high-performance open source http and https proxy server for production environments.
+The main goal of the **OpenProxy** project is to create a high-performance open source http and https proxy server for production environments.
 
 If you don't want to use both services at the same time, nothing prevents you from using the configurations only for a specific service.
 
 ### Varnish Cache
 
-<img src="https://github.com/trimstray/ohps/blob/master/doc/img/varnish_software_logo.png" align="right">
+<img src="https://github.com/trimstray/OpenProxy/blob/master/doc/img/varnish_software_logo.png" align="right">
 
   > Before using the **Varnish Cache** please read **[Introduction](https://varnish-cache.org/intro/)**.
 
@@ -46,13 +46,13 @@ If you don't want to use both services at the same time, nothing prevents you fr
 
 To increase your knowledge, read **[Varnish Documentation](https://varnish-cache.org/docs/index.html)**.
 
-###### Varnish Cache with ohps
+###### Varnish Cache with OpenProxy
 
-The next step should be to read the **[Varnish Cache ohps documentation](https://github.com/trimstray/ohps/blob/master/doc/varnish-cache.md)**.
+The next step should be to read the **[Varnish Cache OpenProxy documentation](https://github.com/trimstray/OpenProxy/blob/master/doc/varnish-cache.md)**.
 
 ### Nginx
 
-<img src="https://github.com/trimstray/ohps/blob/master/doc/img/nginx_logo.png" align="right">
+<img src="https://github.com/trimstray/OpenProxy/blob/master/doc/img/nginx_logo.png" align="right">
 
   > Before using the **Nginx** please read **[Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)**.
 
@@ -60,9 +60,9 @@ The next step should be to read the **[Varnish Cache ohps documentation](https:/
 
 To increase your knowledge, read **[Nginx Documentation](https://nginx.org/en/docs/)**.
 
-###### Nginx with ohps
+###### Nginx with OpenProxy
 
-The next step should be to read the **[Nginx ohps documentation](https://github.com/trimstray/ohps/blob/master/doc/nginx.md)**.
+The next step should be to read the **[Nginx OpenProxy documentation](https://github.com/trimstray/OpenProxy/blob/master/doc/nginx.md)**.
 
 ### Installation
 
