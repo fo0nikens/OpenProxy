@@ -287,6 +287,7 @@ varnishlog -b -q 'FetchError'
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/h5bp/server-configs-nginx"><b>Nginx boilerplate configs</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/nginx-boilerplate/nginx-boilerplate"><b>Awesome Nginx configuration template</b></a><br>
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/yandex/gixy"><b>Nginx static analyzer</b></a><br>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/fcambus/nginx-resources"><b>A collection of resources covering Nginx and more</b></a><br>
 </p>
 
 ###### Cheatsheets
