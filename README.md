@@ -317,6 +317,12 @@ varnishlog -b -q 'FetchError'
 &nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/jiangwenyuan/nuster/wiki/Web-cache-server-performance-benchmark:-nuster-vs-nginx-vs-varnish-vs-squid"><b>Web cache server performance benchmark: nuster vs nginx vs varnish vs squid</b></a><br>
 </p>
 
+##### Performance Analyzers
+
+<p>
+&nbsp;&nbsp;:small_orange_diamond: <a href="https://github.com/lebinh/ngxtop"><b>ngxtop</b></a><br>
+</p>
+
 ##### Log Analyzers
 
 <p>
